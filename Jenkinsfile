@@ -1,9 +1,25 @@
-pipeline {
+pipelne {
     agent any
-
-        stage('git scm update') {
+    options {
+        skipDefaultCheckout(true)
+    }
+    stages {
+        stage('Souce Code Pull') {
             steps {
-                git url: 'https://github.com/HAERIN-L/DsO_project.git'
+                echo '> Chekckeing...'
+                
+                checkout scm
             }
         }
+        stage('Docker Build'){
+            steps {
+                bat 'docker-compose build'
+            }
+        }
+        stage('Docker Deploy') {
+            steps {
+                bat 'docker-compose upd -d'
+            }
+        }
+    }
 }
