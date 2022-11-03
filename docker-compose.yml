@@ -1,1 +1,16 @@
-
+version: '3'
+services:
+ python:
+        image: python:3
+        container_name:python_test
+ web:
+    container_name : test
+    build:
+      context: ./
+      volumes:
+        - ./:/var/www/html
+      ports:
+        - 8080:8080
+       
+    
+    
