@@ -1,7 +1,7 @@
 pipeline {
    agent any
    stages {
-       stage('Github Push') {
+       stage('Github SourceCode Pull') {
            steps {
             
               checkout scm 
@@ -9,6 +9,7 @@ pipeline {
        }
       stage('Docker Build') {
            steps {
+              bat 'docker-compose build'
            
            }
        }
