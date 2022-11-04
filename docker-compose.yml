@@ -1,8 +1,8 @@
-version: '3'
+version: "2"
 services:
- python:
-        image: python:3
-        container_name:python_test
+ splite3:
+    image: sqlite3:3.39
+    container_name: sqlite3
  web:
     container_name : test
     build:
