@@ -10,8 +10,13 @@ pipeline {
       stage('Docker Build') {
            steps {
               bat 'docker-compose build'
-           
            }
        }
+      stage('Docker Depploy'){
+           steps {
+              bat 'docker-compose up -d'
+           }
+      }
+         
    }
 }
