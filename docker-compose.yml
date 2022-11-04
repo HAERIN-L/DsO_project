@@ -1,11 +1,24 @@
 version: "2"
 services:
-   app:
-       build: .
+  sqlite3:
+        image: sqlite:3
+        contaniner_name: sqlite3
         volumes:
-          - ./:/var/www/html
-        ports:
-          - 8080:8080
-       
+         - ./sqlite3:/application
+         restart: always
+         
+         ports:
+           - 8080:8080
+           
+   web:
+       container_name: flask
+       build:
+         context: ./
+         volumes:
+            - ./:/var/www/html
+          ports:
+             - 8080:8080
+          depends_on:
+             - sqlite3
     
     
