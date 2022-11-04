@@ -1,16 +1,11 @@
 version: "2"
 services:
- splite3:
-    image: sqlite3:3.39
-    container_name: sqlite3
- web:
-    container_name : test
-    build:
-      context: ./
-      volumes:
-        - ./:/var/www/html
-      ports:
-        - 8080:8080
+   app:
+       build: .
+        volumes:
+          - ./:/var/www/html
+        ports:
+          - 8080:8080
        
     
     
