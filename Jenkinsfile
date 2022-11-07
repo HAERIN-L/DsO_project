@@ -7,6 +7,12 @@ pipeline {
               checkout scm 
            }
        }
+      stage('Docker') {
+           steps {
+            
+              bat: docker-compose up -d 
+           }
+       }
          
    }
 }
