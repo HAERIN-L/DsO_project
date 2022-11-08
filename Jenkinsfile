@@ -13,6 +13,16 @@ pipeline {
                sh 'sudo docker build'
            }
        }
+      stage('Docker Run Image') {
+	        steps {
+	        sh 'sudo docker run -d -p 4000:4000'
+	        }
+	   }
+	   stage('Testing'){
+	        steps {
+	            echo 'Testing..'
+	            }
+	   }
          
    }
 }
