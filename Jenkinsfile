@@ -10,7 +10,7 @@ pipeline {
       stage('Docker Build') {
            steps {
             
-              bat 'docker-compose up -d' 
+               sh 'sudo docker build -t mynlpmodel:v1 .'
            }
        }
          
