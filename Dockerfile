@@ -1,18 +1,14 @@
 FROM ubuntu:20.04
 
-RUN pip install --upgrade pip
-
-WORKDIR /app
+RUN apt-get update
+RUN apt-get install -y vim net-tools
+RUN apt-get install -y python3-dev build-essential python3 python3-pip python3-venv
 
 COPY . /app
-RUN apk add build-base
-RUN apk add --no-cache --virtual .build-deps g++ python3-dev libffi-dev openssl-dev && \
-    apk add --no-cache --update python3 && \
-    pip3 install --upgrade pip setuptools
-RUN pip3 install -r requirements.txt
-RUN python -m nltk.downloader punkt
-EXPOSE 4000
+WORKDIR /app
 
-ENTRYPOINT  ["python"]
+RUN pip install -r requirements.txt
+RUN rm -rf ./docker_*.ps
 
+ENTRYPOINT ["python"]
 CMD ["app.py"]
