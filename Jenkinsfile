@@ -10,7 +10,7 @@ pipeline {
       stage('Docker Build') {
            steps {
             
-               sh 'sudo docker build -t mynlpmodel:v1 .'
+               sh 'sudo docker build'
            }
        }
          
