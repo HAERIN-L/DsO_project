@@ -1,18 +1,18 @@
-FROM python:3.8
+FROM ubuntu:20.04
 
+RUN pip install --upgrade pip
 
-WORKDIR /usr/src/app
+WORKDIR /app
 
+COPY . /app
+RUN apk add build-base
+RUN apk add --no-cache --virtual .build-deps g++ python3-dev libffi-dev openssl-dev && \
+    apk add --no-cache --update python3 && \
+    pip3 install --upgrade pip setuptools
+RUN pip3 install -r requirements.txt
+RUN python -m nltk.downloader punkt
+EXPOSE 4000
 
+ENTRYPOINT  ["python"]
 
-COPY requirements.txt ./
-
-RUN pip install -r requirements.txt
-
-COPY . .
-
-
-
-EXPOSE 8080
-
-CMD [ "python", "app.py" ]
+CMD ["app.py"]
