@@ -10,7 +10,7 @@ pipeline {
       stage('Docker Build') {
            steps {
             
-               sh 'sudo docker build'
+               sh(script: 'docker-compose build app')
            }
        }
       stage('Docker Run Image') {
