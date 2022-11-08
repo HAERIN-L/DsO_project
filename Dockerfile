@@ -1,14 +1,17 @@
-FROM ubuntu:20.04
+FROM python:3
 
-RUN apt-get update
-RUN apt-get install -y vim net-tools
-RUN apt-get install -y python3-dev build-essential python3 python3-pip python3-venv
+WORKDIR /usr/src/app
 
-COPY . /app
-WORKDIR /app
+
+
+COPY requirements.txt ./
 
 RUN pip install -r requirements.txt
-RUN rm -rf ./docker_*.ps
 
-ENTRYPOINT ["python"]
-CMD ["app.py"]
+COPY . .
+
+
+
+EXPOSE 4000
+
+CMD [ "python", "app.py" ]
