@@ -7,19 +7,16 @@ pipeline {
               checkout scm 
            }
        }
-      stage('Docker build') {
+      stage('Docker Build') {
            steps {
-            
-              bat 'docker build -t pyhello:flask'
+            bat 'docker build . -t dock_test '
            }
        }
-       stage('Docker Deploy') {
+      stage('Docker Deploy') {
            steps {
-            
-              bat 'docker run -d -p 0.0.0.0:5000:5000/tcp --name dockertest pyhello:flask'
+            bat 'docker run --name dock -d -p 4900:4900 dock_test'
            }
        }
-  
-         
+
    }
 }
